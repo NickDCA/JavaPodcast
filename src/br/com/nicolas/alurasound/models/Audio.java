@@ -54,12 +54,22 @@ public class Audio {
 
     public void play() {
         playbacks++;
-        System.out.println("Playing: " + title + "\n" + "00:00 --- " + formatLenght());
+        if (lenght < 3600) {
+            System.out.println("Playing: " + title + "\n" + "00:00 --- " + formatLenght());
+        } else {
+            System.out.println("Playing: " + title + "\n" + "00:00:00 --- " + formatLenght());
+        }
+
     }
 
     private String formatLenght() {
         String formattedLenght;
-        formattedLenght = String.format("%02d:%02d", lenght / 60, lenght % 60);
+        if (lenght < 3600) {
+            formattedLenght = String.format("%02d:%02d", lenght / 60, lenght % 60);
+        } else {
+            formattedLenght = String.format("%02d:%02d:%02d", lenght / 3600, (lenght % 3600) / 60, lenght % 60);
+        }
+
         return formattedLenght;
     }
 
